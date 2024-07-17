@@ -24,6 +24,9 @@ module.exports = {
       italic: {
         fontStyle: 'italic',
       },
+      color: {
+        error: '#f87171', // Adding custom error color if needed
+      },
     },
   },
   plugins: [],
