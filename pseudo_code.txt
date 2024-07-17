@@ -1,0 +1,38 @@
+1. Initialize the Application
+   - Create HTML with input fields for day, month, and year
+   - Add a submit button
+   - Add placeholders to display the results
+
+2. Capture User Input
+   - On submit button click event:
+     - Get the value of the 'day' input field
+     - Get the value of the 'month' input field
+     - Get the value of the 'year' input field
+
+3. Validate User Input
+   - If 'day' is empty, show "Day is required"
+   - If 'month' is empty, show "Month is required"
+   - If 'year' is empty, show "Year is required"
+   - Check if 'day' is between 1 and 31
+   - Check if 'month' is between 1 and 12
+
+4. Calculate the Age
+   - Get the current date (currentDay, currentMonth, currentYear)
+   - Calculate age in years, months, and days:
+     - ageYears = currentYear - year
+     - ageMonths = currentMonth - month
+     - ageDays = currentDay - day
+   - Adjust for cases where the day and month of the birth date haven't occurred yet in the current year:
+     - If ageMonths < 0, decrease ageYears by 1 and increase ageMonths by 12
+     - If ageDays < 0, adjust the previous month’s days and correct ageDays and ageMonths
+
+5. Display the Result
+   - Update the HTML placeholders with:
+     - Calculated years
+     - Calculated months
+     - Calculated days
+
+6. Handle Errors and Edge Cases
+   - Check for invalid dates (e.g., February 30)
+   - Provide feedback for invalid input values
+   - Consider leap years when adjusting days and months
