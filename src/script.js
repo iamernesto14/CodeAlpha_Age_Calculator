@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const day = parseInt(dayInput.value);
     const month = parseInt(monthInput.value);
     const year = parseInt(yearInput.value);
+    const error = document.querySelectorAll('p');
+
 
     if (isNaN(day) || isNaN(month) || isNaN(year)) {
       alert('Please enter a valid date.');
@@ -20,8 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (month > 12 || month < 1) {
-      alert('Please enter a valid month (1-12).');
+      const monthError = error[1];
+      monthError.textContent = "Enter a valid month";
+      monthError.classList.remove('hidden');
+      // monthInput.classList.add('border')
+      monthInput.classList.add('border-red-500')
       return;
+    } else {
+      monthError.textContent = "";
+      monthInput.classList.remove('border-red-500');
+      // monthError.classList.add('hidden');
     }
 
     // Get the number of days in the given month and year
@@ -55,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
       days += previousMonth.getDate();
     }
 
+    // Output Section
     displayDay.textContent = years;
     displayMonth.textContent = months;
     displayYear.textContent = days;
