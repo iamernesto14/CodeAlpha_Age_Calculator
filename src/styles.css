@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
 /*
 ! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
@@ -755,7 +755,20 @@ video {
   color: rgb(133 77 255 / var(--tw-text-opacity));
 }
 
-.error{
+.no-spinner {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+  &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+            appearance: none;
+  }
+}
+
+.error {
+  color: hsl(0, 100%, 67%);
+  border: 1px solid hsl(0, 100%, 67%);
   --tw-text-opacity: 1;
   color: rgb(255 87 87 / var(--tw-text-opacity));
 }
