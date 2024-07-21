@@ -9,37 +9,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Add an event handler to the day input
   dayInput.addEventListener("input", function () {
+    if (dayInput.nextElementSibling.innerHTML == "Must be a valid date") {
+      dayInput.parentElement.classList.remove("error");
+      monthInput.parentElement.classList.remove("error");
+      yearInput.parentElement.classList.remove("error");
+    }
+
     if (dayInput.value > 31) {
       dayInput.nextElementSibling.innerHTML = "Must be valid day";
-      dayInput.parentElement.classList.add("error");
+      dayInput.classList.add("error");
+      dayInput.previousElementSibling.classList.add("text-primary-light-red");
     } else {
-      dayInput.parentElement.classList.remove("error");
+      dayInput.classList.remove("text-primary-light-red");
+      dayInput.previousElementSibling.classList.remove("error");
       dayInput.nextElementSibling.innerHTML = "";
     }
   });
 
   // Add event handler to the month input
   monthInput.addEventListener("input", function () {
+    if (monthInput.nextElementSibling.innerHTML == "Must be a valid date") {
+      dayInput.parentElement.classList.remove("error");
+      monthInput.parentElement.classList.remove("error");
+      yearInput.parentElement.classList.remove("error");
+    }
+
     if (monthInput.value > 12) {
       monthInput.nextElementSibling.innerHTML = "Must be a valid month";
-      monthInput.parentElement.classList.add("error");
+      monthInput.classList.add("error");
+      monthInput.previousElementSibling.classList.add("text-primary-light-red");
     } else {
-      monthInput.parentElement.classList.remove("error");
+      monthInput.classList.remove("text-primary-light-red");
+      monthInput.classList.remove("error");
+      monthInput.previousElementSibling.classList.remove("text-primary-light-red");
       monthInput.nextElementSibling.innerHTML = "";
     }
   });
 
   // Add event handler to the year input
   yearInput.addEventListener("input", function () {
+    if (monthInput.nextElementSibling.innerHTML == "Must be a valid date") {
+      dayInput.parentElement.classList.remove("error");
+      monthInput.parentElement.classList.remove("error");
+      yearInput.parentElement.classList.remove("error");
+    }
+
     let currentYear = new Date().getFullYear();
     if (yearInput.value > currentYear) {
       yearInput.nextElementSibling.innerHTML = "Must be in the past";
-      yearInput.parentElement.classList.add("error");
+      yearInput.classList.add("error");
+      yearInput.previousElementSibling.classList.add("text-primary-light-red");
     } else if (yearInput.value < 0) {
       yearInput.nextElementSibling.innerHTML = "Must be a valid year";
-      yearInput.parentElement.classList.add("error");
+      yearInput.previousElementSibling.classList.add("text-primary-light-red");
+      yearInput.classList.add("error");
     } else {
-      yearInput.parentElement.classList.remove("error");
+      yearInput.classList.remove("error");
+      yearInput.previousElementSibling.classList.remove("text-primary-light-red");
       yearInput.nextElementSibling.innerHTML = "";
     }
   });
@@ -53,15 +79,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Checking if fields are filled
     if (!day) {
-      dayInput.parentElement.classList.add("error");
+      dayInput.classList.add("error");
+      dayInput.previousElementSibling.classList.add("text-primary-light-red");
       dayInput.nextElementSibling.innerHTML = "This field is required";
     }
     if (!month) {
-      monthInput.parentElement.classList.add("error");
+      monthInput.classList.add("error");
+      monthInput.previousElementSibling.classList.add("text-primary-light-red");
       monthInput.nextElementSibling.innerHTML = "This field is required";
     }
     if (!year) {
-      yearInput.parentElement.classList.add("error");
+      yearInput.classList.add("error");
+      yearInput.previousElementSibling.classList.add("text-primary-light-red");
       yearInput.nextElementSibling.innerHTML = "This field is required";
     }
     if (!day || !month || !year) {
@@ -73,13 +102,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Checking if the date is correct
     if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day || date > currentData) {
-      dayInput.parentElement.classList.add("error");
+      dayInput.previousElementSibling.classList.add("text-primary-light-red");
+      dayInput.classList.add("error");
       dayInput.nextElementSibling.innerHTML = "Must be a valid date";
-      monthInput.parentElement.classList.add("error");
+      monthInput.previousElementSibling.classList.add("text-primary-light-red");
+      monthInput.classList.add("error");
       monthInput.nextElementSibling.innerHTML = "";
-      yearInput.parentElement.classList.add("error");
+      yearInput.previousElementSibling.classList.add("text-primary-light-red");
+      yearInput.classList.add("error");
       yearInput.nextElementSibling.innerHTML = "";
       return;
+    } else {
+      dayInput.classList.remove("error");
+      monthInput.classList.remove("error");
+      yearInput.classList.remove("error");
+      dayInput.previousElementSibling.classList.remove("text-primary-light-red");
+      monthInput.previousElementSibling.classList.remove("text-primary-light-red");
+      yearInput.previousElementSibling.classList.remove("text-primary-light-red");
+      dayInput.nextElementSibling.innerHTML = "";
     }
 
     let age_year = currentData.getFullYear() - date.getFullYear();
